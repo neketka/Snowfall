@@ -1,0 +1,7 @@
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.csprojResolveAssemblyReference.cache
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debug\Snowfall.exe
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debug\Snowfall.pdb
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debug\OpenTK.pdb
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debug\OpenTK.xml
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.exe
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.pdb
