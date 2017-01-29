@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Snowfall
 {
+    /*
+     * The class solely for holding the Main method
+     */
     class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args) //Entry point
         {
-            new Snowfall().Start();
+            new Snowfall().Start(); //Creates new instance and starts the engine
         }
     }
 }
