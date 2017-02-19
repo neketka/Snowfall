@@ -5,3 +5,5 @@ C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debu
 C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\bin\Debug\OpenTK.xml
 C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.exe
 C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.pdb
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.Properties.Resources.resources
+C:\Users\Nikita\Documents\Visual Studio 2015\Projects\Snowfall\Snowfall\obj\Debug\Snowfall.csproj.GenerateResource.Cache

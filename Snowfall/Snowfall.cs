@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics;
 using Snowfall.Graphics;
+using Snowfall.Input;
 
 namespace Snowfall
 {
@@ -14,29 +16,35 @@ namespace Snowfall
         static Snowfall() //Static constructor for logs
         {
             string logFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Snowfall_Logs"; //Get the log folder
-            logFile = logFolder + DateTime.Now.ToFileTime().ToString() + "_snowfall.txt"; //Create path for log
-            File.CreateText(logFolder); //Create log file
+            logFile = logFolder + "\\" + DateTime.Now.ToFileTime().ToString() + "_snowfall.txt"; //Create path for log
+            if (!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
+            File.Create(logFile).Close(); //Create log file
         }
 
         public Snowfall() //Game constructor
         {
             Window = new GameWindow(800, 600, GraphicsMode.Default, "Snowfall"); //Create game window
             Window.UpdateFrame += Window_UpdateFrame; //Attach tick event
-            Window.Resize += Window_Resize; //Attach resize event
             Window.RenderFrame += Window_RenderFrame; //Attach render event
+            Window.Disposed += Window_Disposed;
+            Renderer = new Renderer(Window);
+            Keyboard = new Keyboard(Window);
+            Mouse = new Mouse(Window);
         }
 
-        private void Window_Resize(object sender, EventArgs e) //Resize event
+        private void Window_Disposed(object sender, EventArgs e)
         {
-            Renderer.SetViewport(0, 0, Window.Width, Window.Height); //Change viewport
+            Renderer.Dispose();
         }
 
         private void Window_UpdateFrame(object sender, FrameEventArgs e) //Tick event
         {
+            Tick(this, (float)e.Time); //Tick all events
         }
 
         private void Window_RenderFrame(object sender, FrameEventArgs e) //Render event
         {
+            Renderer.OnRender();
         }
 
         public static void Log(string log) //Error log
@@ -50,7 +58,10 @@ namespace Snowfall
         {
             Window.Run(60); //Run the event loop
         }
+        public event EventHandler<float> Tick = (s, t) => { };
 
+        public Keyboard Keyboard { get; private set; } //Keyboard device state
+        public Mouse Mouse { get; private set; } //Mouse device state
         public GameWindow Window { get; private set; } //The variable for the window
         public Renderer Renderer { get; private set; } //The renderer
         private static string logFile; //Path for log file

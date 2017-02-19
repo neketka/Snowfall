@@ -13,7 +13,7 @@ namespace Snowfall
     {
         public static void Main(string[] args) //Entry point
         {
-            new Snowfall().Start(); //Creates new instance and starts the engine
+            new Snowfall().Start(); //Creates new instance and starts the game
         }
     }
 }

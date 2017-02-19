@@ -1,0 +1,15 @@
+#version 330
+
+out vec2 texout;
+in vec3 vert;
+in vec2 texcoord;
+
+uniform mat4 modelmatrix;
+uniform mat4 viewmatrix;
+uniform mat4 projmatrix;
+
+void main()
+{
+	gl_Position = projmatrix  * viewmatrix * modelmatrix * vec4(vert, 1);
+	texout = texcoord;
+}
