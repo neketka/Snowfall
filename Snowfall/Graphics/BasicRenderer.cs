@@ -8,14 +8,15 @@ namespace Snowfall.Graphics
     {
         public BasicRenderer(Renderer renderer) 
         {
-            program = new ShaderProgram(Properties.Resources.basicvs, Properties.Resources.basicfs);
+            Program = new ShaderProgram(Properties.Resources.basicvs, Properties.Resources.basicfs);
+            Program.SetAttribLocation("fragment", 0);
             this.renderer = renderer;
         }
 
-        public void RenderObject(VBO<Vector3> vertices, VBO<Vector2> texcoords, VBO<int> indices, Texture2D tex, Matrix4 modelview)
+        public ShaderPass RenderObject(VBO<Vector3> vertices, VBO<Vector2> texcoords, VBO<int> indices, Texture2D tex, Matrix4 modelview)
         {
             BasicViewer viewer = renderer.Viewer;
-            ShaderPass pass = new ShaderPass(program, PrimitiveType.Triangles);
+            ShaderPass pass = new ShaderPass(Program, PrimitiveType.Triangles);
             pass.SetUniform("modelmatrix", modelview);
             pass.SetUniform("viewmatrix", viewer.ViewMatrix);
             pass.SetUniform("projmatrix", viewer.ProjectionMatrix);
@@ -23,15 +24,15 @@ namespace Snowfall.Graphics
             pass.SetAttributeVBO("vert", vertices);
             pass.SetAttributeVBO("texcoord", texcoords);
             pass.SetIndexBuffer(indices);
-            pass.RunPass();
+            return pass;
         }
 
         public void Dispose()
         {
-            program.Dispose();
+            Program.Dispose();
         }
 
         private Renderer renderer;
-        private ShaderProgram program;
+        public ShaderProgram Program { get; private set; }
     }
 }

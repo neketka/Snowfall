@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Snowfall.Graphics
@@ -16,7 +17,14 @@ namespace Snowfall.Graphics
             renderbuffers = new List<int>();
             readable = read;
             drawable = draw;
-            Target = read ? FramebufferTarget.ReadFramebuffer : draw ? FramebufferTarget.DrawFramebuffer : FramebufferTarget.Framebuffer;
+            Target = read && draw ? FramebufferTarget.Framebuffer : read ? FramebufferTarget.ReadFramebuffer : draw ? FramebufferTarget.DrawFramebuffer : FramebufferTarget.Framebuffer;
+        }
+
+        public void Clear()
+        {
+            if (!drawable) throw new Exception("FBO is not drawable!");
+            Bind();
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
         }
 
         private FBO(int id, bool read, bool draw)
@@ -24,7 +32,7 @@ namespace Snowfall.Graphics
             FBOId = 0;
             readable = read;
             drawable = draw;
-            Target = read ? FramebufferTarget.ReadFramebuffer : draw ? FramebufferTarget.DrawFramebuffer : FramebufferTarget.Framebuffer;
+            Target = read && draw ? FramebufferTarget.Framebuffer : read ? FramebufferTarget.ReadFramebuffer : draw ? FramebufferTarget.DrawFramebuffer : FramebufferTarget.Framebuffer;
         }
 
         public void AddColorAttachment(Texture2D tex, int attachment)
@@ -81,6 +89,7 @@ namespace Snowfall.Graphics
 
         public void DrawColorBuffer(int attachment)
         {
+            Bind();
             GL.DrawBuffer(DrawBufferMode.ColorAttachment0 + attachment);
         }
 

@@ -42,10 +42,11 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\BasicObject.cs" />
+    <Compile Include="Graphics\BasicRenderObject.cs" />
     <Compile Include="Graphics\BasicRenderer.cs" />
     <Compile Include="Graphics\BasicViewer.cs" />
     <Compile Include="Graphics\FBO.cs" />
+    <Compile Include="Graphics\ParticleRenderer.cs" />
     <Compile Include="Graphics\Renderer.cs" />
     <Compile Include="Graphics\ShaderPass.cs" />
     <Compile Include="Graphics\ShaderProgram.cs" />
@@ -53,6 +54,12 @@
     <Compile Include="Graphics\VBO.cs" />
     <Compile Include="Input\Keyboard.cs" />
     <Compile Include="Input\Mouse.cs" />
+    <Compile Include="Physics\Gravity.cs" />
+    <Compile Include="Physics\ICollisionData.cs" />
+    <Compile Include="Physics\IForce.cs" />
+    <Compile Include="Physics\IGravityData.cs" />
+    <Compile Include="Physics\ISolidBody.cs" />
+    <Compile Include="Resources\PhysicsWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -65,7 +72,6 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Game\" />
-    <Folder Include="Physics\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -30,6 +30,17 @@ namespace Snowfall
             Renderer = new Renderer(Window);
             Keyboard = new Keyboard(Window);
             Mouse = new Mouse(Window);
+            BasicRenderObject obj = new BasicRenderObject(Renderer.BasicRenderer, 
+                new Vector3[] { new Vector3(-0.5f, 0.5f, -1f), new Vector3(0.5f, 0.5f, -1f), new Vector3(-0.5f, -0.5f, -1f), new Vector3(0.5f, -0.5f, -1f) }, 
+                new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) }, 
+                new int[] { 0, 1, 2, 1, 2, 3 }, 
+                new Texture2D(new Bitmap(Bitmap.FromFile(@"D:\Nikita\Pictures\Arya Lol.png"))));
+            float dir = 0;
+            Tick += (o, e) => { obj.ModelMatrix = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(dir)); dir++; };
+            Renderer.Render += (o, e) => {
+                obj.Render(FBO.DeviceFramebuffer);
+            };
+            Window.Disposed += (o, e) => { obj.Dispose(); };
         }
 
         private void Window_Disposed(object sender, EventArgs e)

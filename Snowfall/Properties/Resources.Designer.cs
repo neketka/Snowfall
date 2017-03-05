@@ -61,7 +61,17 @@ namespace Snowfall.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to #version 330
+        ///
+        ///out vec4 fragment;
+        ///in vec2 texout;
+        ///
+        ///uniform sampler2D tex;
+        ///
+        ///void main()
+        ///{
+        ///	fragment = texture(tex, texout);
+        ///}.
         /// </summary>
         internal static string basicfs {
             get {
@@ -70,7 +80,21 @@ namespace Snowfall.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to #version 330
+        ///
+        ///out vec2 texout;
+        ///in vec3 vert;
+        ///in vec2 texcoord;
+        ///
+        ///uniform mat4 modelmatrix;
+        ///uniform mat4 viewmatrix;
+        ///uniform mat4 projmatrix;
+        ///
+        ///void main()
+        ///{
+        ///	gl_Position = projmatrix  * viewmatrix * modelmatrix * vec4(vert, 1);
+        ///	texout = texcoord;
+        ///}.
         /// </summary>
         internal static string basicvs {
             get {

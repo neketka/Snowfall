@@ -7,9 +7,9 @@ using OpenTK;
 
 namespace Snowfall.Graphics
 {
-    public class BasicObject : IDisposable
+    public class BasicRenderObject : IDisposable
     {
-        public BasicObject(BasicRenderer renderer, Vector3[] vertices, Vector2[] texcoords, int[] indices, Texture2D texture)
+        public BasicRenderObject(BasicRenderer renderer, Vector3[] vertices, Vector2[] texcoords, int[] indices, Texture2D texture)
         {
             this.renderer = renderer;
             this.vbuffer = new VBO<Vector3>(vertices, false);
@@ -19,9 +19,11 @@ namespace Snowfall.Graphics
             this.ModelMatrix = Matrix4.Identity;
         }
 
-        public void Render()
+        public void Render(FBO fbo)
         {
-            renderer.RenderObject(vbuffer, tbuffer, ibuffer, texture, ModelMatrix);
+            ShaderPass pass = renderer.RenderObject(vbuffer, tbuffer, ibuffer, texture, ModelMatrix);
+            pass.SetFramebuffer(fbo);
+            pass.RunPass();
         }
 
         public void Dispose()

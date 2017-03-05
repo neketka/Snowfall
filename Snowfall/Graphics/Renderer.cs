@@ -29,6 +29,12 @@ namespace Snowfall.Graphics
             Viewer.UpdateProjection(window.Width, window.Height);
         }
 
+        public void UpdateWindow(int x, int y, int w, int h)
+        {
+            GL.Viewport(x, y, w, h);
+            Viewer.UpdateProjection(w, h);
+        }
+
         private void CheckContextCurrent() //Checks if the context is current and makes current if not
         {
             if (!context.IsCurrent) context.MakeCurrent(windowinfo);
